@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Survey Hub</title>
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-analytics.js"></script>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+
+    <div id="register_div" class="main-div">
+      <h3>Please Enter Your Details</h3>
+      <input type="email" placeholder="Email..." / id="email_field">
+      <input type="password" placeholder="Password..." / id="password_field_one">
+      <input type="password" placeholder="Confirm Password..." / id="password_field_two">
+      <div class="checkbox-div">
+        <label for="toc"><a href="termsandconditions.html">Terms and Conditions</a></label>
+        <input id="termsandconditions" type="checkbox" name="toc" value="1">
+      </div>
+      <p id="checktoc">please accept terms and conditions</p>
+      <button onclick="register()">Register Account</button>
+    </div>
+    
+<script src="fireBase.js"></script>
+<script src="register.js"></script>
+
+</body>
+</html>
