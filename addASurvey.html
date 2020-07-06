@@ -13,17 +13,16 @@
 </head>
 <body>
     
-    <div id="forgot_password_div" class="main-div">
-        <h3>Please Enter Your Email</h3>
-        <input type="email" placeholder="Email..." / id="email_field">
-        <p style="color:red;" id="EmailError"></p>
-        <button onclick="sendEmail()">Send Email</button> <br>
-        <a href="login.html">Login</a> <br>
-        <a href="register.html">Register an account</a>
+    <div id="addSurvey_div" class="main-div">
+        <h3>Survey Hub</h3>
+        <p id="user_para">Welcome User :</p>
+        <button href="addASurvey.html">Add a Survey</button><br>
+        <button href="completeASurvey.html">Complete a Survey</button><br>
+        <button onclick="logout()">Add Survey</button>
     </div>
 
 <script src="fireBase.js"></script>
-<script src="forgotPassword.js"></script>
+<script src="addASurvey.js"></script>
 
 </body>
 </html>

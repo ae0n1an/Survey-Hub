@@ -7,8 +7,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     if(email_verified == true){
 
-      document.getElementById("user_div").style.display = "block";
-      document.getElementById("login_div").style.display = "none";
+      window.open("home.html","_self");
       
       if(user != null){
         
@@ -18,16 +17,12 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     } else {
       logout();
-      document.getElementById("user_div").style.display = "none";
-      document.getElementById("login_div").style.display = "block";
       document.getElementById("loginError").innerHTML = "Please verify your email address.";
     }
 
   } else {
     // No user is signed in.
     
-    document.getElementById("user_div").style.display = "none";
-    document.getElementById("login_div").style.display = "block";
   }
 });
 
@@ -43,8 +38,4 @@ function login(){
     
     // ...
   });
-}
-
-function logout(){
-  firebase.auth().signOut();
 }

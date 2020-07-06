@@ -13,7 +13,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         logout();
       }
       else {
-        window.open("login.html");
+        window.open("login.html","_self");
       }
     }
     
@@ -34,16 +34,11 @@ function createAccount(){
     var errorMessage = error.message;
     
     document.getElementById("checktoc").innerHTML = errorMessage;
-    document.getElementById("checktoc").style.display = "block";
     document.getElementById("checktoc").style.color = "red";
     
     // ...
   });
     
-}
-
-function logout(){
-  firebase.auth().signOut();
 }
 
 function sendVerification() {
@@ -52,7 +47,6 @@ function sendVerification() {
   user.sendEmailVerification().then(function() {
     // Email sent.
     document.getElementById("checktoc").innerHTML = "An email has been sent to verify your address";
-    document.getElementById("checktoc").style.display = "block";
     document.getElementById("checktoc").style.color = "black";
   }).catch(function(error) {
     // An error happened.
@@ -71,13 +65,11 @@ function register(){
 
   if(document.getElementById("termsandconditions").checked == false){
     document.getElementById("checktoc").innerHTML = "Please accept terms and conditions";
-    document.getElementById("checktoc").style.display = "block";
     document.getElementById("checktoc").style.color = "red";
   }
 
   else if(userPass != userPassTwo){
     document.getElementById("checktoc").innerHTML = "Your passwords do not match";
-    document.getElementById("checktoc").style.display = "block";
     document.getElementById("checktoc").style.color = "red"; 
   }
   else{
