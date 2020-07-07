@@ -15,3 +15,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       window.open("login.html","_self");
     }
 });
+
+function openPost(){
+    window.open("postASurvey.html","_self");
+}

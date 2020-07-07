@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Survey Hub</title>
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-analytics.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="all.css" />
+</head>
+<body>
+
+    <div class="navbar">
+      <img src="logoText.png" width="148" height="45">
+      <a href="home.html">Home</a>
+      <a href="about.html">About</a>
+      <div class="dropdown">
+        <p style="display: inline-block; color: white;">balance: 00.00</p>
+        <button class="dropbtn">Account
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="">Manage Account</a>
+          <a href="">Manage Surveys</a>
+          <a href="" onclick="logout()">Log Out</a>
+        </div>
+      </div>
+    </div>   
+    
+    <div id="addSurvey_div" class="home-div">
+        <h3>Please Enter Survey Details:</h3>
+        Link to google form: <input type="url" id="googleform_field">
+        Title: <input type="text" placeholder="Title..." id="title_field">
+        Description: <input type="text" placeholder="Description..." id="description_field">
+        Survey length: <input type="number" placeholder="Approximate Survey length" id="length_field">
+        <button onclick="add()">Add Survey</button>
+    </div>
+
+<script src="fireBase.js"></script>
+<script src="postASurvey.js"></script>
+
+</body>
+</html>

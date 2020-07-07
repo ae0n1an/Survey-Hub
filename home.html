@@ -10,29 +10,40 @@
     <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-analytics.js"></script>
     <link rel="stylesheet" type="text/css" href="all.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
     <div class="navbar">
+        <img src="logoText.png" width="148" height="45">
         <a href="home.html">Home</a>
         <a href="about.html">About</a>
         <div class="dropdown">
+          <p style="display: inline-block; color: white;">balance: 00.00</p>
           <button class="dropbtn">Account
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
             <a href="">Manage Account</a>
+            <a href="">Manage Surveys</a>
             <a href="" onclick="logout()">Log Out</a>
           </div>
         </div>
     </div>
     
-    <div id="user_div" class="main-div">
+    <div id="user_div" class="home-div">
         <h3>Survey Hub</h3>
         <p id="user_para">Welcome User :</p>
-        <button href="addASurvey.html">Add a Survey</button><br>
-        <button href="completeASurvey.html">Complete a Survey</button><br>
-        <button onclick="logout()">Logout</button>
+        <br>
+        <div class="homebar-div">
+          <form class="example" action="action_page.php">
+            <input type="text" placeholder="Find a survey.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+          <h3>OR</h3>
+          <button onclick="openPost()">Post a Survey</button>
+        </div>
+        <h3><u>Top Surveys</u></h3>
     </div>
 
 <script src="fireBase.js"></script>
