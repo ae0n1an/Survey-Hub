@@ -267,3 +267,7 @@ form.example::after {
     width: 60%;
     display: inline-block;
 }
+
+.add-div input {
+    width: 40%;
+}
