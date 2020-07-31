@@ -8,6 +8,11 @@ firebase.auth().onAuthStateChanged(function(user) {
           
           var email_id = user.email;
           document.getElementById("user_para").innerHTML = "Welcome User : " + email_id
+
+          let database = firebase.database();
+          console.log(database)
+          let ref = database.ref('surveys')
+          ref.on('value', gotData, errData)
         }
   
     } else {
@@ -16,6 +21,13 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
+function gotData(data){
+  console.log(data.val());
+}
+
+function errData(err){
+  console.log(err);
+}
 function openPost(){
     window.open("postASurvey.html","_self");
 }

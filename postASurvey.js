@@ -34,5 +34,15 @@ function add() {
     } else{
         document.getElementById("addError").style.color = "black";
         document.getElementById("addError").innerHTML = "Your survey has been uploaded";
+        let database = firebase.database();
+        let ref = database.ref('surveys');
+        let data = {
+            email: firebase.auth().currentUser.email,
+            link: link, 
+            title: title, 
+            description: description,
+            length: parseInt(length)
+        }
+        ref.push(data);
     }
 }
