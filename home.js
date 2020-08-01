@@ -39,7 +39,19 @@ function errData(err){
 }
 
 function displayData(email, title, description, length, link){
-  console.log(email, title, description, length, link);
+  let email_id = firebase.auth().currentUser.email;
+  if (email == email_id){
+    
+  }
+  else {
+    let homeDiv = document.getElementById("user_div");
+    let a = document.createElement('a');
+    a.id = 'survey_display_div';
+    a.className = 'survey_display-div';
+    a.href = link;
+    a.innerHTML = '<p><u>' + title + '</u></p><br><p><img src="clock.jpg"> ' + length + ' minutes </p><p><img src="credits.png"> ' + length*10 + '</p><br><p>' + description + '</p>';
+    homeDiv.appendChild(a);
+  }
 }
 
 function openPost(){
