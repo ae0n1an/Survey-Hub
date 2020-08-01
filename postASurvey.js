@@ -21,16 +21,16 @@ function add() {
     let length = document.getElementById("length_field").value;
     if(link == "") {
         document.getElementById("addError").style.color = "red";
-        document.getElementById("addError").innerHTML = "Please copy your link from google forms";
+        document.getElementById("addError").innerHTML = "Please add a valid google forms link";
     } else if(title == "") {
         document.getElementById("addError").style.color = "red";
-        document.getElementById("addError").innerHTML = "Please add a title";
+        document.getElementById("addError").innerHTML = "Please add a valid title";
     } else if(description == "") {
         document.getElementById("addError").style.color = "red";
-        document.getElementById("addError").innerHTML = "Please add a description";
-    } else if(length == "") {
+        document.getElementById("addError").innerHTML = "Please add a valid description";
+    } else if(length == "" || Number.isNaN(length) || length <= 0 || length > 60) {
         document.getElementById("addError").style.color = "red";
-        document.getElementById("addError").innerHTML = "Please add the survey length";
+        document.getElementById("addError").innerHTML = "Please add a valid survey length";
     } else{
         document.getElementById("addError").style.color = "black";
         document.getElementById("addError").innerHTML = "Your survey has been uploaded";
