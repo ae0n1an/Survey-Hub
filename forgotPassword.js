@@ -5,10 +5,10 @@ function sendEmail(){
     auth.sendPasswordResetEmail(emailAddress).then(function() {
         // Email sent.
         document.getElementById("EmailError").style.color = "black";
-        document.getElementById("EmailError").innerHTML = "Email sent";
+        document.getElementById("EmailError").innerHTML = `Email sent`;
     }).catch(function(error) {
         // An error happened.
         document.getElementById("EmailError").style.color = "red";
-        document.getElementById("EmailError").innerHTML = "Invalid Email";
+        document.getElementById("EmailError").innerHTML = `Invalid Email`;
     });
 }

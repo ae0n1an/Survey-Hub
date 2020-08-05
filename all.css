@@ -297,5 +297,6 @@ form.example::after {
 }
 
 .survey_display-div p{
+    word-wrap: break-word;
     margin: 5px;
 }

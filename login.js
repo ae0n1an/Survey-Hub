@@ -12,12 +12,12 @@ firebase.auth().onAuthStateChanged(function(user) {
       if(user != null){
         
         var email_id = user.email;
-        document.getElementById("user_para").innerHTML = "Welcome User : " + email_id
+        document.getElementById("user_para").innerHTML = `Welcome User : ${email_id}`
       }
 
     } else {
       logout();
-      document.getElementById("loginError").innerHTML = "Please verify your email address.";
+      document.getElementById("loginError").innerHTML = `Please verify your email address`
     }
 
   } else {
@@ -34,7 +34,7 @@ function login(){
   firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
     // Handle Errors here.
     
-    document.getElementById("loginError").innerHTML = "Please enter a valid email and password";
+    document.getElementById("loginError").innerHTML = `Please enter a valid email and password`
     
     // ...
   });

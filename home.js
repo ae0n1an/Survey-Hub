@@ -7,11 +7,8 @@ firebase.auth().onAuthStateChanged(function(user) {
         if(user != null){
           
           var email_id = user.email;
-          document.getElementById("user_para").innerHTML = "Welcome User : " + email_id
-
-          let database = firebase.database();
-          let ref = database.ref('surveys')
-          ref.on('value', gotData, errData)
+          //use backtick syntax
+          document.getElementById("user_para").innerHTML = `Welcome User : ${email_id}`
         }
   
     } else {
@@ -20,10 +17,17 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
+window.onload = function() {
+  let database = firebase.database();
+  let ref = database.ref('surveys')
+  ref.on('value', gotData, errData)
+};
+
 function gotData(data){
   var surveys = data.val();
   let keys = Object.keys(surveys);
-  for (let i = 0; i < keys.length; i++){
+  
+  for (let i = 0; i < keys.length; i++){ //add foreach => function 
     let k = keys[i];
     let email = surveys[k].email;
     let title = surveys[k].title;
@@ -48,8 +52,8 @@ function displayData(email, title, description, length, link){
     let a = document.createElement('a');
     a.id = 'survey_display_div';
     a.className = 'survey_display-div';
-    a.href = link;
-    a.innerHTML = '<p><u>' + title + '</u></p><br><p><img src="clock.jpg"> ' + length + ' minutes </p><p><img src="credits.png"> ' + length*10 + '</p><br><p>' + description + '</p>';
+    a.href = 'completeASurvey.html?link=' + link +'&credits=' + length*10;
+    a.innerHTML = `<p><u>${title}</u></p><br><p><img src="clock.jpg"> ${length} minutes</p><p><img src="credits.png"> ${length*10}</p><br><p>${description}</p>`
     homeDiv.appendChild(a);
   }
 }
@@ -57,3 +61,7 @@ function displayData(email, title, description, length, link){
 function openPost(){
   window.open("postASurvey.html","_self");
 }
+
+document.getElementById("search").addEventListener("click", function(){
+  console.log("yes");
+});
