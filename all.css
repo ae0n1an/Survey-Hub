@@ -292,11 +292,40 @@ form.example::after {
     overflow: hidden;
 }
 
-.survey_display-div:hover{
+.survey_display-div:hover {
     outline: 2px solid black!important;
 }
 
-.survey_display-div p{
+.survey_display-div p {
+    word-wrap: break-word;
+    margin: 5px;
+}
+
+.survey_edit-div {
+    width: 500px;
+    height: 220px;
+    display: inline-block;
+    font-size: .875em;
+    line-height: 1.4;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    color: inherit;
+    box-sizing: inherit;
+    margin: 12px;
+    padding: 0px;
+    border: 0px;
+    vertical-align: baseline;
+    outline: 1px solid black!important;
+    flex-direction: column;
+    flex: 2;
+    overflow: hidden;
+}
+
+.survey_edit-div:hover {
+    outline: 2px solid black!important;
+}
+
+.survey_edit-div p {
     word-wrap: break-word;
     margin: 5px;
 }

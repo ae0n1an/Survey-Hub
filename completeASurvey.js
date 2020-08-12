@@ -33,9 +33,9 @@ window.onload = function() {
 };
 
 function addSurveyToPage(link, credits){
-  let homeDiv = document.getElementById("user_div");
+  let homeDiv = document.getElementById("home-div");
   let div = document.createElement('div');
   div.id = 'survey_completion_div';
-  div.innerHTML = `<iframe src="${link}?embedded=true" width="640" height="685" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>`
+  div.innerHTML = `<iframe src="${link}?embedded=true" id="myFrame" width="640" height="685" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>`
   homeDiv.insertBefore(div, homeDiv.firstChild);
 };
