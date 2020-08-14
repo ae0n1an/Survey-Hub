@@ -47,7 +47,7 @@ function displayData(email, title, description, length, link){
         let div = document.createElement('div');
         div.id = 'survey_edit_div';
         div.className = 'survey_edit-div';
-        div.innerHTML = `<p><u>${title}</u></p><br><p><img src="clock.jpg"> ${length} minutes</p><p><img src="credits.png"> ${length*10}</p><br><p>${description}</p>`
+        div.innerHTML = `<table><tr><th>Link:</th><td>${link}</td></tr><tr><th>Title:</th><td>${title}</td></tr><tr><th>Length:</th><td>${length} minutes</td></tr><tr><th>Description:</th><td>${description}</td></tr></table><br><p id="edit">Edit <img src="pencil.png"></p><p id="delete">Delete <img src="bin.png"></p>`
         homeDiv.appendChild(div);
     }
     else {

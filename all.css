@@ -302,8 +302,8 @@ form.example::after {
 }
 
 .survey_edit-div {
-    width: 500px;
-    height: 220px;
+    width: 100%;
+    height: 100%;
     display: inline-block;
     font-size: .875em;
     line-height: 1.4;
@@ -318,11 +318,20 @@ form.example::after {
     outline: 1px solid black!important;
     flex-direction: column;
     flex: 2;
-    overflow: hidden;
+    overflow: auto;
 }
 
-.survey_edit-div:hover {
-    outline: 2px solid black!important;
+.survey_edit-div th {
+    padding: 5px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.survey_edit-div td {
+    padding: 5px;
+    text-align: left;
+    vertical-align: top;
+    height: auto;
 }
 
 .survey_edit-div p {
