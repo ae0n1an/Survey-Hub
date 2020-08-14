@@ -19,7 +19,11 @@ function add() {
     let title = document.getElementById("title_field").value;
     let description = document.getElementById("description_field").value;
     let length = document.getElementById("length_field").value;
-    if(link == "") {
+    console.log(check())
+    if(check()) {
+        document.getElementById("addError").style.color = "red";
+        document.getElementById("addError").innerHTML = `The maximum number of surveys allowed is 3`;
+    } else if(link == "") {
         document.getElementById("addError").style.color = "red";
         document.getElementById("addError").innerHTML = `Please add a valid google forms link`;
     } else if(title == "") {
@@ -45,4 +49,34 @@ function add() {
         }
         ref.push(data);
     }
+}
+
+function check() {
+    let database = firebase.database();
+    let ref = database.ref('surveys');
+    console.log(ref);
+    ref.on('value', checkData, errData);
+};
+
+function checkData(data){
+    var surveys = data.val();
+    let counter = 0
+    let email_id = firebase.auth().currentUser.email;
+    let keys = Object.keys(surveys);
+    for (let i = 0; i < keys.length; i++){
+        let k = keys[i];
+        let email = surveys[k].email;
+        if (email == email_id){
+            counter =  counter + 1;
+        }
+    }
+    if (counter >= 3){
+        return false;
+    } else {
+        return true;
+    }
+}
+  
+function errData(err){
+    console.log(err);
 }
