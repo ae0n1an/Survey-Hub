@@ -19,8 +19,7 @@ function add() {
     let title = document.getElementById("title_field").value;
     let description = document.getElementById("description_field").value;
     let length = document.getElementById("length_field").value;
-    console.log(check())
-    if(check()) {
+    if(toomany === false) {
         document.getElementById("addError").style.color = "red";
         document.getElementById("addError").innerHTML = `The maximum number of surveys allowed is 3`;
     } else if(link == "") {
@@ -51,12 +50,13 @@ function add() {
     }
 }
 
-function check() {
+window.onload = function() {
     let database = firebase.database();
     let ref = database.ref('surveys');
-    console.log(ref);
     ref.on('value', checkData, errData);
 };
+
+var toomany = true
 
 function checkData(data){
     var surveys = data.val();
@@ -71,9 +71,9 @@ function checkData(data){
         }
     }
     if (counter >= 3){
-        return false;
+        toomany = false;
     } else {
-        return true;
+        toomany = true;
     }
 }
   
