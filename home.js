@@ -24,6 +24,7 @@ window.onload = function() {
 };
 
 function gotData(data){
+  document.getElementById("surveys").innerHTML = ``
   var surveys = data.val();
   let keys = Object.keys(surveys);
   
@@ -48,7 +49,7 @@ function displayData(email, title, description, length, link){
     
   }
   else {
-    let homeDiv = document.getElementById("user_div");
+    let homeDiv = document.getElementById("surveys");
     let a = document.createElement('a');
     a.id = 'survey_display_div';
     a.className = 'survey_display-div';

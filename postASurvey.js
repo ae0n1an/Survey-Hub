@@ -56,7 +56,7 @@ window.onload = function() {
     ref.on('value', checkData, errData);
 };
 
-var toomany = true
+var toomany = false
 
 function checkData(data){
     var surveys = data.val();
