@@ -39,7 +39,7 @@
 
     <div id="edit" class="modal">
       <div class="modal-content">
-        <span class="close" id="close">&times;</span>
+        <span class="close" id="editClose">&times;</span>
         <h3>Please enter the survey details you want to change:</h3>
         Link to google form: <br><input type="url" id="googleform_field"><br>
         Title: <br><input type="text" id="title_field" maxlength = "40"><br>
@@ -47,6 +47,14 @@
         Approximate Survey length (minutes): <br><input type="number" min="0" max="60" id="length_field">
         <p style="color:red;" id="addError"></p>
         <button id="update">Update Survey</button>
+      </div>
+    </div>
+
+    <div id="delete" class="modal">
+      <div class="modal-content">
+        <span class="close" id="deleteClose">&times;</span>
+        <h3>Are you sure you want to delete this survey?</h3>
+        <button id="yes">Yes</button><button id="no">No</button>
       </div>
     </div>
 

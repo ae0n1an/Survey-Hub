@@ -55,8 +55,23 @@ function gotData(data){
 }
 
 function deleteItem(key) {
-    let userRef = firebase.database().ref('surveys/' + key);
-    userRef.remove()
+    let modal = document.getElementById("delete");
+
+    modal.style.display = "block";
+
+    document.getElementById("deleteClose").addEventListener("click", function(){
+        modal.style.display = "none";
+    });
+
+    document.getElementById("no").addEventListener("click", function(){
+        modal.style.display = "none";
+    });
+
+    document.getElementById("yes").addEventListener("click", function(){
+        modal.style.display = "none";
+        let userRef = firebase.database().ref('surveys/' + key);
+        userRef.remove()
+    });
 }
 
 function editItem(key, surveys) {
@@ -70,7 +85,7 @@ function editItem(key, surveys) {
     document.getElementById('description_field').value = ''
     document.getElementById('length_field').value = ''
 
-    document.getElementById("close").addEventListener("click", function(){
+    document.getElementById("editClose").addEventListener("click", function(){
         modal.style.display = "none";
     });
 
