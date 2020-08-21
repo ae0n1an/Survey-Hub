@@ -35,7 +35,7 @@ function gotData(data){
     let description = surveys[k].description;
     let length = surveys[k].length;
     let link = surveys[k].link;
-    displayData(email, title, description, length, link);
+    displayData(k, email, title, description, length, link);
   }
 }
 
@@ -43,7 +43,7 @@ function errData(err){
   console.log(err);
 }
 
-function displayData(email, title, description, length, link){
+function displayData(key, email, title, description, length, link){
   let email_id = firebase.auth().currentUser.email;
   if (email == email_id){
     
@@ -51,9 +51,9 @@ function displayData(email, title, description, length, link){
   else {
     let homeDiv = document.getElementById("surveys");
     let a = document.createElement('a');
-    a.id = 'survey_display_div';
+    a.id = key;
     a.className = 'survey_display-div';
-    a.href = 'completeASurvey.html?link=' + link +'&credits=' + length*10;
+    a.href = 'completeASurvey.html?' + key;
     a.innerHTML = `<p><u>${title}</u></p><br><p><img src="clock.jpg"> ${length} minutes</p><p><img src="credits.png"> ${length*10}</p><br><p>${description}</p>`
     homeDiv.appendChild(a);
   }

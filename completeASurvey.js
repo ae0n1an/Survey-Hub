@@ -14,28 +14,34 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
-
-function displayData(email, title, description, length, link){
-  console.log(email, title, description, length, link);
-}
-
-function openPost(){
-  window.open("postASurvey.html","_self");
-}
+var key = document.location.href.split('?')[document.location.href.split('?').length - 1];
 
 window.onload = function() {
-  var url = document.location.href,
-  link = url.split('?');
-  link = link[1].split('=')[1];
-  credits = url.split('&');
-  credits = credits[1].split('=')[1];
-  addSurveyToPage(link, credits)
+  let database = firebase.database();
+  let ref = database.ref('surveys')
+  ref.on('value', gotData, errData)
 };
 
-function addSurveyToPage(link, credits){
+function gotData(data){
+  document.getElementById("home-div").innerHTML = ``
+  let surveys = data.val();
+  //let email = surveys[key].email;
+  //let title = surveys[key].title;
+  //let description = surveys[key].description;
+  let length = surveys[key].length;
+  let link = surveys[key].link;
+  addSurveyToPage(link, length);
+}
+
+function addSurveyToPage(link, length){
   let homeDiv = document.getElementById("home-div");
   let div = document.createElement('div');
   div.id = 'survey_completion_div';
   div.innerHTML = `<iframe src="${link}?embedded=true" id="myFrame" width="640" height="685" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>`
   homeDiv.insertBefore(div, homeDiv.firstChild);
 };
+
+
+function errData(err){
+  console.log(err);
+}
