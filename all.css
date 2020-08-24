@@ -339,6 +339,10 @@ form.example::after {
     margin: 5px;
 }
 
+.survey_edit-div p:hover {
+    text-decoration: underline;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */

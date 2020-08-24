@@ -72,11 +72,16 @@ function deleteItem(key) {
         let userRef = firebase.database().ref('surveys/' + key);
         userRef.remove()
     });
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 }
 
 function editItem(key, surveys) {
     let modal = document.getElementById("edit");
-    let span = document.getElementsByClassName("close")[0];
 
     modal.style.display = "block";
 
