@@ -54,7 +54,7 @@ function displayData(key, email, title, description, length, link){
     a.id = key;
     a.className = 'survey_display-div';
     a.href = 'completeASurvey.html?' + key;
-    a.innerHTML = `<p><u>${title}</u></p><br><p><img src="clock.jpg"> ${length} minutes</p><p><img src="credits.png"> ${length*10}</p><br><p>${description}</p>`
+    a.innerHTML = `<p><u class="title">${title}</u></p><br><p><img src="clock.jpg"> ${length} minutes</p><p><img src="credits.png"> ${length*10}</p><br><p>${description}</p>`
     homeDiv.appendChild(a);
   }
 }
@@ -66,3 +66,24 @@ function openPost(){
 document.getElementById("search").addEventListener("click", function(){
   console.log("yes");
 });
+
+function sort() {
+   let input = document.getElementById('search');
+   let filter = input.value.toUpperCase();
+   let surveyBoxes = document.getElementsByClassName("survey_display-div");
+   let list = document.getElementsByClassName("title");
+   let titles = [];
+
+   for (i = 0; i < list.length; i++) {
+    titles.push(list[i].innerHTML)
+   }
+
+  for (i = 0; i < titles.length; i++) {
+    txtValue = titles[i];
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      surveyBoxes[i].style.display = "";
+    } else {
+      surveyBoxes[i].style.display = "none";
+    }
+  }
+}

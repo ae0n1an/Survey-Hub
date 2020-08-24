@@ -76,3 +76,10 @@ function register(){
     createAccount()
   }
 }
+
+document.getElementById("password_field_two").addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("register").click();
+  }
+});

@@ -12,3 +12,10 @@ function sendEmail(){
         document.getElementById("EmailError").innerHTML = `Invalid Email`;
     });
 }
+
+document.getElementById("email_field").addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("send").click();
+    }
+});
