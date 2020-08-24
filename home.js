@@ -67,7 +67,7 @@ document.getElementById("search").addEventListener("click", function(){
   console.log("yes");
 });
 
-function sort() {
+document.getElementById("search").addEventListener("keyup", function(event) {
    let input = document.getElementById('search');
    let filter = input.value.toUpperCase();
    let surveyBoxes = document.getElementsByClassName("survey_display-div");
@@ -86,4 +86,4 @@ function sort() {
       surveyBoxes[i].style.display = "none";
     }
   }
-}
+});
