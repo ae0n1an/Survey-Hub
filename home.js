@@ -63,10 +63,6 @@ function openPost(){
   window.open("postASurvey.html","_self");
 }
 
-document.getElementById("search").addEventListener("click", function(){
-  console.log("yes");
-});
-
 document.getElementById("search").addEventListener("keyup", function(event) {
   let input = document.getElementById('search');
   let filter = input.value.toUpperCase();
@@ -97,5 +93,16 @@ document.getElementById("search").addEventListener("keyup", function(event) {
       }
     }
   }
+});
 
+document.getElementById("titleSelect").addEventListener("click", function(event) {
+  document.getElementById("searchDropdown").innerHTML = `Title <i class="fa fa-caret-down"></i>`;
+});
+
+document.getElementById("descriptionSelect").addEventListener("click", function(event) {
+  document.getElementById("searchDropdown").innerHTML = `Description <i class="fa fa-caret-down"></i>`;
+});
+
+document.getElementById("lengthSelect").addEventListener("click", function(event) {
+  document.getElementById("searchDropdown").innerHTML = `Length <i class="fa fa-caret-down"></i>`;
 });

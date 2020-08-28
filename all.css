@@ -210,19 +210,19 @@ form.example input[type=text] {
     font-size: 17px;
     border: 1px solid grey;
     float: left;
-    width: 83%;
+    width: 70%;
+    height:47px;
     background: #f1f1f1;
     margin-bottom: 0px;
 }
-  
+
 /* Style the submit button */
 form.example button {
     float: left;
-    width: 17%;
-    padding: 10px;
+    width: 30%;
+    padding: 15px;
     background: #5d8ffc;
     color: white;
-    font-size: 17px;
     border: 1px solid grey;
     border-left: none; /* Prevent double borders */
     cursor: pointer;
@@ -252,7 +252,7 @@ form.example::after {
     display: inline-block; 
     text-align: center;
     width: 10%;
-    height: 65%;
+    height: 85%;
     vertical-align: middle;
     margin-top: 0px;
 }
@@ -355,28 +355,74 @@ form.example::after {
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+}
   
-  /* Modal Content/Box */
-  .modal-content {
+/* Modal Content/Box */
+.modal-content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 40%; /* Could be more or less, depending on screen size */
-  }
+}
   
-  /* The Close Button */
-  .close {
+/* The Close Button */
+.close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
+}
   
-  .close:hover,
-  .close:focus {
+.close:hover,
+.close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
-  }
+}
+
+.search-dropdown-content {
+    display: none;
+}
+
+/* Dropdown Button */
+.dropdownbtn {
+    height: 47px;
+    padding: 15px;
+    font-size: 14px;
+    border: none;
+}
+
+.search-dropdown {
+    position: relative;
+}
+  
+/* Dropdown Content (Hidden by Default) */
+.search-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0%;
+    top: 47px;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    max-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+/* Links inside the dropdown */
+.search-dropdown-content p {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+  
+/* Change color of dropdown links on hover */
+.search-dropdown-content p:hover {background-color: #ddd;}
+  
+/* Show the dropdown menu on hover */
+.search-dropdown:hover .search-dropdown-content {display: block;}
+  
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.search-dropdown:hover .dropdownbtn {background-color: white; color:#5d8ffc; border: 1px solid #5d8ffc;}

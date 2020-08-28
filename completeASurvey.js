@@ -33,9 +33,12 @@ function gotData(data){
   addSurveyToPage(link, length);
 }
 
+var credits = 0;
+
 function addSurveyToPage(link, length){
   let homeDiv = document.getElementById("home-div");
   let div = document.createElement('div');
+  credits = length * 10;
   div.id = 'survey_completion_div';
   div.innerHTML = `<iframe src="${link}?embedded=true" id="myFrame" width="640" height="685" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>`
   homeDiv.insertBefore(div, homeDiv.firstChild);
@@ -45,3 +48,8 @@ function addSurveyToPage(link, length){
 function errData(err){
   console.log(err);
 }
+
+document.getElementById("finish").addEventListener("click", function(){
+  console.log(credits);
+  window.open("home.html","_self");
+});
