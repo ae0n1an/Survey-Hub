@@ -63,7 +63,10 @@ function openPost(){
   window.open("postASurvey.html","_self");
 }
 
-document.getElementById("search").addEventListener("keyup", function(event) {
+document.getElementById("search").addEventListener("keyup", filter);
+
+function filter() {
+  let selected = document.getElementById("searchDropdown").innerHTML.split(' ')[0];
   let input = document.getElementById('search');
   let filter = input.value.toUpperCase();
   let surveyBoxes = document.getElementsByClassName("survey_display-div");
@@ -72,19 +75,28 @@ document.getElementById("search").addEventListener("keyup", function(event) {
   let titles = [];
   let descs = [];
 
-  for (i = 0; i < titleList.length; i++) {
-    titles.push(titleList[i].innerHTML)
-  }
+  if (selected == "Title") {
 
-  for (i = 0; i < descList.length; i++) {
-    descs.push(descList[i].innerHTML)
-  }
+    for (i = 0; i < titleList.length; i++) {
+      titles.push(titleList[i].innerHTML)
+    }
 
-  for (i = 0; i < titles.length; i++) {
-    txtValue = titles[i];
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      surveyBoxes[i].style.display = "";
-    } else {
+    for (i = 0; i < titles.length; i++) {
+      txtValue = titles[i];
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        surveyBoxes[i].style.display = "";
+      } else {
+        surveyBoxes[i].style.display = "none";
+      }
+    }
+
+  } else if (selected == "Description") {
+
+    for (i = 0; i < descList.length; i++) {
+      descs.push(descList[i].innerHTML)
+    }
+
+    for (i = 0; i < descs.length; i++) {
       txtValue = descs[i];
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
         surveyBoxes[i].style.display = "";
@@ -92,17 +104,24 @@ document.getElementById("search").addEventListener("keyup", function(event) {
         surveyBoxes[i].style.display = "none";
       }
     }
+
+  } else if (selected == "Length") {
+    surveyBoxes[i].style.display = "";
   }
-});
 
-document.getElementById("titleSelect").addEventListener("click", function(event) {
+};
+
+document.getElementById("titleSelect").addEventListener("click", function() {
   document.getElementById("searchDropdown").innerHTML = `Title <i class="fa fa-caret-down"></i>`;
+  filter();
 });
 
-document.getElementById("descriptionSelect").addEventListener("click", function(event) {
+document.getElementById("descriptionSelect").addEventListener("click", function() {
   document.getElementById("searchDropdown").innerHTML = `Description <i class="fa fa-caret-down"></i>`;
+  filter();
 });
 
-document.getElementById("lengthSelect").addEventListener("click", function(event) {
+document.getElementById("lengthSelect").addEventListener("click", function() {
   document.getElementById("searchDropdown").innerHTML = `Length <i class="fa fa-caret-down"></i>`;
+  filter();
 });
