@@ -54,7 +54,7 @@ function displayData(key, email, title, description, length, link){
     a.id = key;
     a.className = 'survey_display-div';
     a.href = 'completeASurvey.html?' + key;
-    a.innerHTML = `<p><u class="title">${title}</u></p><br><p><img src="clock.jpg"> ${length} minutes</p><p><img src="credits.png"> ${length*10}</p><br><p>${description}</p>`
+    a.innerHTML = `<p><u class="title">${title}</u></p><br><p><img src="clock.jpg"> ${length} minutes</p><p><img src="credits.png"> ${length*10}</p><br><p class="desc">${description}</p>`
     homeDiv.appendChild(a);
   }
 }
@@ -68,22 +68,34 @@ document.getElementById("search").addEventListener("click", function(){
 });
 
 document.getElementById("search").addEventListener("keyup", function(event) {
-   let input = document.getElementById('search');
-   let filter = input.value.toUpperCase();
-   let surveyBoxes = document.getElementsByClassName("survey_display-div");
-   let list = document.getElementsByClassName("title");
-   let titles = [];
+  let input = document.getElementById('search');
+  let filter = input.value.toUpperCase();
+  let surveyBoxes = document.getElementsByClassName("survey_display-div");
+  let titleList = document.getElementsByClassName("title");
+  let descList = document.getElementsByClassName("desc");
+  let titles = [];
+  let descs = [];
 
-   for (i = 0; i < list.length; i++) {
-    titles.push(list[i].innerHTML)
-   }
+  for (i = 0; i < titleList.length; i++) {
+    titles.push(titleList[i].innerHTML)
+  }
+
+  for (i = 0; i < descList.length; i++) {
+    descs.push(descList[i].innerHTML)
+  }
 
   for (i = 0; i < titles.length; i++) {
     txtValue = titles[i];
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       surveyBoxes[i].style.display = "";
     } else {
-      surveyBoxes[i].style.display = "none";
+      txtValue = descs[i];
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        surveyBoxes[i].style.display = "";
+      } else {
+        surveyBoxes[i].style.display = "none";
+      }
     }
   }
+
 });
