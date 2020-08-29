@@ -22,9 +22,9 @@ function add() {
     if(toomany === false) {
         document.getElementById("addError").style.color = "red";
         document.getElementById("addError").innerHTML = `The maximum number of surveys allowed is 3`;
-    } else if(link == "") {
+    } else if(link == "" || link.startsWith("https://docs.google.com/forms/d/e/") == false || link.endsWith("/viewform?usp=sf_link") == false) {
         document.getElementById("addError").style.color = "red";
-        document.getElementById("addError").innerHTML = `Please add a valid google forms link`;
+        document.getElementById("addError").innerHTML = `Please add a valid google forms link e.g. https://docs.google.com/forms/d/e/xxx/viewform?usp=sf_link shortened links not accepted`;
     } else if(title == "") {
         document.getElementById("addError").style.color = "red";
         document.getElementById("addError").innerHTML = `Please add a valid title`;

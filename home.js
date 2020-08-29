@@ -54,7 +54,7 @@ function displayData(key, email, title, description, length, link){
     a.id = key;
     a.className = 'survey_display-div';
     a.href = 'completeASurvey.html?' + key;
-    a.innerHTML = `<p><u class="title">${title}</u></p><br><p><img src="clock.jpg"> ${length} minutes</p><p><img src="credits.png"> ${length*10}</p><br><p class="desc">${description}</p>`
+    a.innerHTML = `<p><u class="title">${title}</u></p><br><p class="length"><img src="clock.jpg"> ${length} minutes</p><p><img src="credits.png"> ${length*10}</p><br><p class="desc">${description}</p>`
     homeDiv.appendChild(a);
   }
 }
@@ -72,8 +72,10 @@ function filter() {
   let surveyBoxes = document.getElementsByClassName("survey_display-div");
   let titleList = document.getElementsByClassName("title");
   let descList = document.getElementsByClassName("desc");
+  let lengthList = document.getElementsByClassName("length");
   let titles = [];
   let descs = [];
+  let lengths = [];
 
   if (selected == "Title") {
 
@@ -106,7 +108,18 @@ function filter() {
     }
 
   } else if (selected == "Length") {
-    surveyBoxes[i].style.display = "";
+    for (i = 0; i < lengthList.length; i++) {
+      lengths.push(parseInt(lengthList[i].innerText.split(" ")[1]));
+    }
+
+    for (i = 0; i < lengths.length; i++) {
+      txtValue = lengths[i];
+      if (txtValue == parseInt(filter) || filter == "") {
+        surveyBoxes[i].style.display = "";
+      } else {
+        surveyBoxes[i].style.display = "none";
+      }
+    }
   }
 
 };
