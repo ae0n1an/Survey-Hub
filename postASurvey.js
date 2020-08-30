@@ -44,7 +44,8 @@ function add() {
             link: link, 
             title: title, 
             description: description,
-            length: parseInt(length)
+            length: parseInt(length),
+            boost: 0
         }
         ref.push(data);
     }
@@ -53,6 +54,7 @@ function add() {
 window.onload = function() {
     let database = firebase.database();
     let ref = database.ref('surveys');
+    update();
     ref.on('value', checkData, errData);
 };
 

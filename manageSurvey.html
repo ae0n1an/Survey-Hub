@@ -19,7 +19,7 @@
         <a href="home.html">Home</a>
         <a href="about.html">About</a>
         <div class="dropdown">
-          <p style="display: inline-block; color: white;">balance: 00</p>
+          <p style="display: inline-block; color: white;" id="balance">balance: </p>
           <button class="dropbtn">Account
             <i class="fa fa-caret-down"></i>
           </button>
@@ -55,6 +55,18 @@
         <span class="close" id="deleteClose">&times;</span>
         <h3>Are you sure you want to delete this survey?</h3>
         <button id="yes">Yes</button><button id="no">No</button>
+      </div>
+    </div>
+
+    <div id="boost" class="modal">
+      <div class="modal-content">
+        <span class="close" id="boostClose">&times;</span>
+        <h3>How much do you want to boost this survey?</h3>
+        <button id="oneHundred">Add Credits: 100.00 credits</button><br>
+        <button id="fiveHundred">Add Credits: 500.00 credits</button><br>
+        <button id="twoThousand">Add Credits: 2000.00 credits</button><br>
+        <p style="color:red;" id="notEnoughFunds"></p>
+        <button id="cancel">Cancel</button>
       </div>
     </div>
 

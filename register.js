@@ -10,6 +10,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
       if(email_verified == false){
         sendVerification();
+        addBalance(user.uid)
         logout();
       }
       else {
@@ -83,3 +84,9 @@ document.getElementById("password_field_two").addEventListener("keyup", function
     document.getElementById("register").click();
   }
 });
+
+function addBalance(userId) {
+  firebase.database().ref('users/' + userId).set({
+    balance: 0,
+  });
+}

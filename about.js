@@ -13,3 +13,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       window.open("login.html","_self");
     }
 });
+
+window.onload = function() {
+  update();
+};

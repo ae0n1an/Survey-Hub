@@ -20,22 +20,45 @@ firebase.auth().onAuthStateChanged(function(user) {
 window.onload = function() {
   let database = firebase.database();
   let ref = database.ref('surveys')
+  update();
   ref.on('value', gotData, errData)
 };
 
 function gotData(data){
   document.getElementById("surveys").innerHTML = ``
-  var surveys = data.val();
+  let surveys = data.val();
   let keys = Object.keys(surveys);
+  let order = [];
+  let newOrder = [];
   
   for (let i = 0; i < keys.length; i++){ //add foreach => function 
     let k = keys[i];
+    let boost = surveys[k].boost;
+    newOrder.push(boost);
+    order.push({boost: boost, key: k})
+  }
+
+  newOrder = newOrder.sort().reverse();
+  console.log(newOrder);
+  console.log(order.length);
+
+  for (let i = 0; i < order.length; i++){ //add foreach => function 
+    for (let j = 0; j < newOrder.length; j++){ //add foreach => function 
+      if (order[i].boost == newOrder[j]) {
+        newOrder[j] = order[i];
+        j = newOrder.length;
+      }
+    }
+  }
+  console.log(newOrder);
+
+  for (let i = 0; i < newOrder.length; i++){ //add foreach => function
+    let k = newOrder[i].key
     let email = surveys[k].email;
     let title = surveys[k].title;
     let description = surveys[k].description;
     let length = surveys[k].length;
-    let link = surveys[k].link;
-    displayData(k, email, title, description, length, link);
+    createInfo(k, email, title, description, length);
   }
 }
 
@@ -43,7 +66,7 @@ function errData(err){
   console.log(err);
 }
 
-function displayData(key, email, title, description, length, link){
+function createInfo(key, email, title, description, length){
   let email_id = firebase.auth().currentUser.email;
   if (email == email_id){
     

@@ -21,3 +21,21 @@ var app_fireBase = {};
 function logout(){
   firebase.auth().signOut();
 }
+
+var balance = 0;
+
+function update() {
+  let database = firebase.database();
+  database.ref('users').on('value', updateBalance, errData)
+};
+
+function updateBalance(data){
+  let users = data.val();
+  let user = firebase.auth().currentUser.uid;
+  balance = users[user].balance;
+  document.getElementById("balance").innerHTML = "balance: " + balance.toFixed(2);
+}
+
+function errData(err){
+  console.log(err);
+}

@@ -17,6 +17,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 window.onload = function() {
     let database = firebase.database();
     let ref = database.ref('surveys')
+    update();
     ref.on('value', gotData, errData)
 };
 
