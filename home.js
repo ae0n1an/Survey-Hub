@@ -58,7 +58,8 @@ function gotData(data){
     let title = surveys[k].title;
     let description = surveys[k].description;
     let length = surveys[k].length;
-    createInfo(k, email, title, description, length);
+    let boost = surveys[k].boost;
+    createInfo(k, email, title, description, length, boost);
   }
 }
 
@@ -66,7 +67,7 @@ function errData(err){
   console.log(err);
 }
 
-function createInfo(key, email, title, description, length){
+function createInfo(key, email, title, description, length, boost){
   let email_id = firebase.auth().currentUser.email;
   if (email == email_id){
     
@@ -77,7 +78,7 @@ function createInfo(key, email, title, description, length){
     a.id = key;
     a.className = 'survey_display-div';
     a.href = 'completeASurvey.html?' + key;
-    a.innerHTML = `<p><u class="title">${title}</u></p><br><p class="length"><img src="clock.jpg"> ${length} minutes</p><p><img src="credits.png"> ${length*10}</p><br><p class="desc">${description}</p>`
+    a.innerHTML = `<p><u class="title">${title}</u></p><br><p class="length"><img src="clock.jpg"> ${length} minutes</p><p><img src="credits.png"> ${length*10}</p><p><img src="boost.png"> ${boost}</p><br><p class="desc">${description}</p>`
     homeDiv.appendChild(a);
   }
 }

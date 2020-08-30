@@ -34,7 +34,8 @@ function gotData(data){
       let description = surveys[k].description;
       let length = surveys[k].length;
       let link = surveys[k].link;
-      displayData(k, email, title, description, length, link);
+      let boost = surveys[k].boost;
+      displayData(k, email, title, description, length, link, boost);
     }
 
     let deleteButtons = document.querySelectorAll("#d");
@@ -226,14 +227,14 @@ function errData(err){
     console.log(err);
 }
   
-function displayData(k, email, title, description, length, link){
+function displayData(k, email, title, description, length, link, boost){
     let email_id = firebase.auth().currentUser.email;
     if (email == email_id){
         let homeDiv = document.getElementById("surveys");
         let div = document.createElement('div');
         div.id = k;
         div.className = 'survey_edit-div';
-        div.innerHTML = `<table><tr><th>Link:</th><td>${link}</td></tr><tr><th>Title:</th><td>${title}</td></tr><tr><th>Length:</th><td>${length} minutes</td></tr><tr><th>Description:</th><td>${description}</td></tr></table><br><p>Edit <img id="e" src="pencil.png"></p><p>Delete <img id="d" src="bin.png"></p><p>Boost <img id="b" src="boost.png"></p>`
+        div.innerHTML = `<table><tr><th>Link:</th><td>${link}</td></tr><tr><th>Title:</th><td>${title}</td></tr><tr><th>Length:</th><td>${length} minutes</td></tr><tr><th>Description:</th><td>${description}</td></tr><tr><th>Boost:</th><td>${boost}</td></tr></table><br><p>Edit <img id="e" src="pencil.png"></p><p>Delete <img id="d" src="bin.png"></p><p>Boost <img id="b" src="boost.png"></p>`
         homeDiv.appendChild(div);
     }
     else {
