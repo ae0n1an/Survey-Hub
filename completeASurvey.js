@@ -1,3 +1,4 @@
+// Signs the user out if they are not logged in
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
@@ -14,8 +15,10 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
+// Graps the survey key from the page url
 var key = document.location.href.split('?')[document.location.href.split('?').length - 1];
 
+// Triggers functions on page load
 window.onload = function() {
   let database = firebase.database();
   let ref = database.ref('surveys');
@@ -23,6 +26,7 @@ window.onload = function() {
   ref.on('value', gotData, errData);
 };
 
+// Gets survey data based on the key
 function gotData(data){
   document.getElementById("home-div").innerHTML = ``
   let surveys = data.val();
@@ -34,8 +38,10 @@ function gotData(data){
   addSurveyToPage(link, length);
 }
 
+// Creates the credits variable
 var credits = 0;
 
+// Creates the google forms survey on the page in an iframe and creates the finish button
 function addSurveyToPage(link, length){
   let homeDiv = document.getElementById("home-div");
   let div = document.createElement('div');
@@ -51,11 +57,12 @@ function addSurveyToPage(link, length){
   addlistener();
 };
 
-
+// Checks for data errors and logs them to the console
 function errData(err){
   console.log(err);
 }
 
+// Listens for when the finish button is clicked and returns the user to the home page
 function addlistener() {
   document.getElementById("finish").addEventListener("click", function(){
     addCredits(credits);
@@ -63,6 +70,7 @@ function addlistener() {
   });
 };
 
+// Adds credits to the users account based on the length of the survey they finished
 function addCredits(credits) {
   let id = firebase.auth().currentUser.uid;
   firebase.database().ref('users/' + id).set({

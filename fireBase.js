@@ -1,3 +1,6 @@
+//This javascipt file if for function that are used by all html pages
+
+// The firbase key used by all html pages on the app
 var app_fireBase = {};
 (function(){
   // Your web app's Firebase configuration
@@ -18,17 +21,21 @@ var app_fireBase = {};
   app_fireBase = firebase;
 })()
 
+// Signs the user out of their account
 function logout(){
   firebase.auth().signOut();
 }
 
+// Established the global variable balance
 var balance = 0;
 
+// Checks if data is changed in the users node and calls a function if so
 function update() {
   let database = firebase.database();
   database.ref('users').on('value', updateBalance, errData)
 };
 
+// Checks the users current balance and sets it to the balance variable and displays this to the user
 function updateBalance(data){
   let users = data.val();
   let user = firebase.auth().currentUser.uid;
@@ -36,6 +43,7 @@ function updateBalance(data){
   document.getElementById("balance").innerHTML = "balance: " + balance.toFixed(2);
 }
 
+// Checks for data errors and logs them to the console
 function errData(err){
   console.log(err);
 }

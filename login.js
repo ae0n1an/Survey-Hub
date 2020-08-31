@@ -1,3 +1,4 @@
+// Checks user is signed in and if their email is verified if their email isnt verified then it wont let them log in
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
@@ -26,6 +27,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
 });
 
+// Attempts to login the user using the data entered into the input fields
 function login(){
     
   var userEmail = document.getElementById("email_field").value;
@@ -40,6 +42,7 @@ function login(){
   });
 }
 
+// Check if the user is in the last input field and if they press enter it will trigger the button to attempt login
 document.getElementById("password_field").addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
     event.preventDefault();

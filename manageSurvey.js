@@ -1,3 +1,4 @@
+// Signs the user out if they are not logged in
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
@@ -14,6 +15,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
+// Call functions to run when the page opens
 window.onload = function() {
     let database = firebase.database();
     let ref = database.ref('surveys');
@@ -21,7 +23,7 @@ window.onload = function() {
     ref.on('value', gotData, errData);
 };
 
-
+// Gets survey data and checks if any of the "button" paragraphs are clicked so it can trigger events
 function gotData(data){
     document.getElementById("surveys").innerHTML=``
     let surveys = data.val();
@@ -64,6 +66,7 @@ function gotData(data){
     });
 }
 
+// Displays the boost modal which allow the user to boost their survey using credits and closes the modal after an action is taken
 function boostItem(key, surveys) {
     let boost = surveys[key].boost;
     document.getElementById('notEnoughFunds').innerText = ''
@@ -131,6 +134,7 @@ function boostItem(key, surveys) {
     }
 }
 
+// Displays the delete modal which allow the user to delete their survey and closes the modal after an action is taken
 function deleteItem(key) {
     let modal = document.getElementById("delete");
 
@@ -157,6 +161,7 @@ function deleteItem(key) {
     }
 }
 
+// Displays the edit modal which allow the user to edit their survey and closes the modal after an action is taken
 function editItem(key, surveys) {
     let modal = document.getElementById("edit");
 
@@ -211,6 +216,7 @@ function editItem(key, surveys) {
     }
 }
 
+// Changes the server data in the surveys node based on what is given to the function
 function writeUserData(key, link, title, description, length, boost) {
     let email_id = firebase.auth().currentUser.email;
     firebase.database().ref('surveys/' + key).set({
@@ -222,11 +228,13 @@ function writeUserData(key, link, title, description, length, boost) {
       length: length
     });
 }
-  
+
+// Checks if there is an error with the data and logs it
 function errData(err){
     console.log(err);
 }
-  
+
+// Displays the data to the page
 function displayData(k, email, title, description, length, link, boost){
     let email_id = firebase.auth().currentUser.email;
     if (email == email_id){

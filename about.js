@@ -1,3 +1,4 @@
+// Signs the user out if they are not logged in
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
@@ -14,6 +15,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
+// Show the user their balance in the top right
 window.onload = function() {
   update();
 };

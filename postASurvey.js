@@ -1,3 +1,4 @@
+// Signs the user out if they are not logged in
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
@@ -14,6 +15,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
+// Checks if the data entered by the user is valid and if it is adds it to the survey list
 function add() {
     let link = document.getElementById("googleform_field").value;
     let title = document.getElementById("title_field").value;
@@ -51,6 +53,7 @@ function add() {
     }
 }
 
+// Calls function on page startup
 window.onload = function() {
     let database = firebase.database();
     let ref = database.ref('surveys');
@@ -58,8 +61,10 @@ window.onload = function() {
     ref.on('value', checkData, errData);
 };
 
+// Established variable for checking if too many surveys are uploaded
 var toomany = false
 
+// Checks how many surveys the user has uploaded and prevents them from uploading more than 3
 function checkData(data){
     var surveys = data.val();
     let counter = 0
@@ -78,7 +83,8 @@ function checkData(data){
         toomany = true;
     }
 }
-  
+
+// Logs the error if there is an error while collecting data
 function errData(err){
     console.log(err);
 }

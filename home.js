@@ -1,3 +1,4 @@
+// Checks if user is signed in and diplays their email address on the home page or logs them out if they are not logged in
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
@@ -17,6 +18,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
+
+// Calls functions on page load and checks if data changes
 window.onload = function() {
   let database = firebase.database();
   let ref = database.ref('surveys')
@@ -24,6 +27,7 @@ window.onload = function() {
   ref.on('value', gotData, errData)
 };
 
+// Gets data from server and re-orders data so it is sent in the order of the surveys with the greatest boost rating
 function gotData(data){
   document.getElementById("surveys").innerHTML = ``
   let surveys = data.val();
@@ -31,7 +35,7 @@ function gotData(data){
   let order = [];
   let newOrder = [];
   
-  for (let i = 0; i < keys.length; i++){ //add foreach => function 
+  for (let i = 0; i < keys.length; i++){
     let k = keys[i];
     let boost = surveys[k].boost;
     newOrder.push(boost);
@@ -39,20 +43,17 @@ function gotData(data){
   }
 
   newOrder = newOrder.sort().reverse();
-  console.log(newOrder);
-  console.log(order.length);
 
-  for (let i = 0; i < order.length; i++){ //add foreach => function 
-    for (let j = 0; j < newOrder.length; j++){ //add foreach => function 
+  for (let i = 0; i < order.length; i++){
+    for (let j = 0; j < newOrder.length; j++){ 
       if (order[i].boost == newOrder[j]) {
         newOrder[j] = order[i];
         j = newOrder.length;
       }
     }
   }
-  console.log(newOrder);
 
-  for (let i = 0; i < newOrder.length; i++){ //add foreach => function
+  for (let i = 0; i < newOrder.length; i++){
     let k = newOrder[i].key
     let email = surveys[k].email;
     let title = surveys[k].title;
@@ -63,10 +64,12 @@ function gotData(data){
   }
 }
 
+// logs errors to the console if they occur when collecting data
 function errData(err){
   console.log(err);
 }
 
+// Displays data to the home page
 function createInfo(key, email, title, description, length, boost){
   let email_id = firebase.auth().currentUser.email;
   if (email == email_id){
@@ -83,12 +86,15 @@ function createInfo(key, email, title, description, length, boost){
   }
 }
 
+// Opens post a survey page
 function openPost(){
   window.open("postASurvey.html","_self");
 }
 
+// Checks if kekup event id triggered while tying in the search bar and calls filter function if it is
 document.getElementById("search").addEventListener("keyup", filter);
 
+// Filters the surveys on the home page based on the search bar and the selected value i the dropdown
 function filter() {
   let selected = document.getElementById("searchDropdown").innerHTML.split(' ')[0];
   let input = document.getElementById('search');
@@ -148,16 +154,19 @@ function filter() {
 
 };
 
+// Checks if title is selected in the dropdown and changes the innerhtml and triggers the filter function
 document.getElementById("titleSelect").addEventListener("click", function() {
   document.getElementById("searchDropdown").innerHTML = `Title <i class="fa fa-caret-down"></i>`;
   filter();
 });
 
+// Checks if description is selected in the dropdown and changes the innerhtml and triggers the filter function
 document.getElementById("descriptionSelect").addEventListener("click", function() {
   document.getElementById("searchDropdown").innerHTML = `Description <i class="fa fa-caret-down"></i>`;
   filter();
 });
 
+// Checks if length is selected in the dropdown and changes the innerhtml and triggers the filter function
 document.getElementById("lengthSelect").addEventListener("click", function() {
   document.getElementById("searchDropdown").innerHTML = `Length <i class="fa fa-caret-down"></i>`;
   filter();

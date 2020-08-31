@@ -1,3 +1,4 @@
+// Check if user has created an account and triggers function if their data is valid
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
@@ -24,6 +25,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
 });
 
+// Creates a user based on entered details and displays error message if details are invalid
 function createAccount(){
     
   var userEmail = document.getElementById("email_field").value;
@@ -42,6 +44,7 @@ function createAccount(){
     
 }
 
+// Sends the user a verification email so they can verify their email
 function sendVerification() {
   var user = firebase.auth().currentUser;
 
@@ -58,6 +61,7 @@ function sendVerification() {
   });
 }
 
+// Checks if the password field matches and the tac is checked and displays errors if invlid data is entered
 function register(){
 
   let userEmail = document.getElementById("email_field").value;
@@ -78,6 +82,7 @@ function register(){
   }
 }
 
+// Checks if the user is in the last input field and presses enter will trigger the register button to be clicked
 document.getElementById("password_field_two").addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
     event.preventDefault();
@@ -85,6 +90,7 @@ document.getElementById("password_field_two").addEventListener("keyup", function
   }
 });
 
+// Adds a balance of 0 to the newly created user
 function addBalance(userId) {
   firebase.database().ref('users/' + userId).set({
     balance: 0,

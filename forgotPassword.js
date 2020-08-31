@@ -1,3 +1,4 @@
+// Sends a forgot your password email to the entered email and displays error if the email is invalid
 function sendEmail(){
     var auth = firebase.auth();
     var emailAddress = document.getElementById("email_field").value;
@@ -13,6 +14,7 @@ function sendEmail(){
     });
 }
 
+// Checks if the user is in the input field and presses enter triggering the button press
 document.getElementById("email_field").addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
       event.preventDefault();
